@@ -1,24 +1,25 @@
 # GameStatisticBot 🎮📊
 
-> ⚠️ **Project Note:** This repository is a **Demo/MVP version** of a larger production system. It has been refactored and extracted from a private repository to demonstrate architectural patterns, asynchronous data parsing, and pipeline design, while completely stripping out all proprietary business logic and sensitive production credentials.
+> ⚠️ **Project Note:** This repository is a **Demo/MVP version** of a larger modular analytical platform. It has been refactored and extracted from a private workspace to demonstrate async application design, web scraping/automation, and data transformation patterns, while completely stripping out proprietary credentials.
 
-An asynchronous Python-based data collection tool and Telegram bot designed to fetch, parse, and monitor player statistics from various gaming sources, presenting structured analytical insights to users.
+An asynchronous Python-based Discord bot and data aggregation tool designed to fetch, parse, and monitor player profiles and market statistics from various gaming ecosystems (including Albion Online, Dota 2, and WoW).
 
 ## 🚀 Key Features & Demo Scope
-* **Data Ingestion & Scraping:** Implements efficient data fetching and parsing from public gaming endpoints and web sources.
-* **Asynchronous Execution:** Built entirely on top of `asyncio` and modern async libraries to handle high-concurrency tasks and rapid data stream processing.
-* **Storage & Models:** Utilizes structured database schemas to map complex JSON response objects into clean, production-ready relational data models.
-* **Error Handling & Resilience:** Features dedicated logging, try-catch blocks for API timeouts, and defensive parsing mechanisms to easily manage corrupted or missing fields in incoming payloads.
+* **Data Ingestion & Extraction:** Implements data fetching from public endpoints, game APIs, and custom parsing logic to extract valuable insights.
+* **Browser Automation & Scraping:** Features background automation elements (originally tested with Selenium) to handle dynamic web content delivery where standard HTTP requests fall short.
+* **Asynchronous Architecture:** Built on top of `discord.py` (v2.0+) using native `asyncio` loops to handle asynchronous command trees (`app_commands`), parallel requests, and rapid I/O operations without blocking the core application.
+* **Data Normalization & Filtering:** Includes custom text/string processors that decompose complex item modifications (e.g., parsing strings like `T7_BAG@2`) and execute threshold-based analytics (e.g., filtering cross-market items with $\ge 30\%$ profit margins).
+* **Storage-Ready Mapping:** Uses locally managed analytical states (with a layout easily scalable to containerized PostgreSQL/Supabase instances via Docker).
 
 ## 🛠️ Tech Stack
 * **Language:** Python 3.10+
-* **Framework:** Aiogram / FastAPI (Asynchronous setup)
-* **Data Manipulation:** JSON, HTTP clients, modern parsing logic
-* **Database:** PostgreSQL / SQLite (Configured for batch mutations and swift query delivery)
-* **Environment Management:** Python `.venv` with strictly separated configuration secrets
+* **Framework:** discord.py (Modern application commands & slash tree setup)
+* **Web Automation & Ingestion:** Requests, JSON Parsing, Selenium (Browser Automation)
+* **Database / State:** SQLite / In-memory data structures (Production-ready for PostgreSQL migrations)
+* **Visual Formatting:** Colorama (For structured pipeline terminal monitoring)
 
-## 📈 Production Intent
-Although originally designed as a highly responsive Telegram-based analytical service, the core module reflects a production-grade approach to **building continuous data pipelines (Download ➡️ Parse ➡️ Filter ➡️ Load)**. This exact architecture can be seamlessly scaled into automated sync cron-jobs or standalone background data processors.
+## 📈 Pipeline Alignment
+The core logic of this bot reflects a structured **Download ➡️ Parse ➡️ Filter ➡️ Present** pipeline. For example, the `/prices` command handles a bulk network payload, transforms nested JSON values, filters out incomplete/corrupted records, and dynamically streams the normalized analytical report back to the user via structured Discord File buffers.
 
 ---
-*Developed as a standalone demonstration focusing on robust async data pipelines and state management.*
+*Developed as a functional demonstration focusing on robust async data parsing, string normalization, and service automation.*
