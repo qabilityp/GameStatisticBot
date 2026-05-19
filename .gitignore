@@ -1,0 +1,29 @@
+.venv/
+venv/
+ENV/
+env/
+bin/
+lib/
+include/
+
+.env
+.idea/
+.vscode/
+*.swp
+*.bak
+
+# MySQL (если вдруг лежат локальные дампы)
+*.sql
+
+# celery
+celerybeat-schedule
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
